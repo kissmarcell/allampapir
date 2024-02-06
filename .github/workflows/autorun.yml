@@ -1,0 +1,35 @@
+name: Automated Bond Archiver
+
+on:
+  schedule:
+    - cron: '30 8 * * *'
+
+jobs:
+  download_and_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Python requirements
+      run: pip install -r requirements.txt
+
+    - name: Set current date as env variable
+      run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+    - name: Download rates
+      run: python download.py
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "bondarchiver@kmarcell.com"
+        git config --local user.name "Automated Bond Archiver"
+        git add -f data
+        git commit -m "${{ env.NOW }}"
+        git push
