@@ -1,7 +1,6 @@
 import requests
 import os
 from datetime import date
-import time
 import json
 
 PAPER_TYPES_REQUEST: str = "https://www.allampapir.hu/api/network_rate/m/get_papers"
