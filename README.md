@@ -1,5 +1,7 @@
 # Hungarian Government Bonds Archiver
 
+[![Automated Bond Archiver](https://github.com/kissmarcell/allampapir/actions/workflows/autorun.yml/badge.svg)](https://github.com/kissmarcell/allampapir/actions/workflows/autorun.yml)
+
 ## Description
 This is a simple Python application that regularly downloads the latest rates of government bonds from the [website](https://www.allampapir.hu/kincstari_arfolyamjegyzes/) of the Government Debt Management Agency of Hungary and then commits it inside this same repository, via GitHub Actions.
 
